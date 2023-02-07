@@ -12,7 +12,7 @@ function cartReducer(state = initialState, action) {
           ...state.items,
           {
             product: action.payload,
-            count: 1,
+            count: items.length,
           },
         ],
       };

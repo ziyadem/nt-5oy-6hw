@@ -1,8 +1,11 @@
 import React from 'react'
 import {useRef , useEffect,useState} from 'react'
-// import SearchCard from './SearchCard';
+import useProducts from "../Hooks/useProducts";
+import PlaceholderCars from "./PlaceholderCars";
+import ProductList from "./ProductList";
 
 const Search = () => {
+  const [products, loading] = useProducts();
   let a=[];
     
     let useReff=useRef();
@@ -20,7 +23,7 @@ const Search = () => {
         if(produc){
           produc.forEach(function(elm) {
             if (elm.title.toLowerCase().includes(inputVal)) {
-              a.push(elm.id);
+              a.push(elm);
             }
           }
         );
@@ -37,10 +40,9 @@ const Search = () => {
          </form>
          <button type="button" className="btn btn-primary">Primary</button>
     </div>
-    
-         {/* <div >
-         <SearchCard card={b}/>
-         </div> */}
+    <div className="container py-3">
+      {loading ? <PlaceholderCars /> : <ProductList products={b} />}
+    </div>
     </>
   )
 }
